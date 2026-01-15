@@ -10,20 +10,21 @@ import java.util.UUID;
 public class UploadedFile {
     private final UUID id;
     private final String filename;
+    private final String extension;
     private final String contentType;
     private final long size;
     private final String storagePath;
     private final LocalDateTime uploadedAt;
 
-    private UploadedFile(UUID id,
-                         String filename,
-                         String contentType,
-                         long size,
-                         String storagePath,
-                         LocalDateTime uploadedAt) {
-
+    public UploadedFile(UUID id, String filename,
+                        String extension,
+                        String contentType,
+                        long size,
+                        String storagePath,
+                        LocalDateTime uploadedAt) {
         this.id = id;
         this.filename = filename;
+        this.extension = extension;
         this.contentType = contentType;
         this.size = size;
         this.storagePath = storagePath;
@@ -35,6 +36,7 @@ public class UploadedFile {
      */
     public static UploadedFile create(
             String filename,
+            String extension,
             String contentType,
             long size,
             String storagePath
@@ -42,6 +44,7 @@ public class UploadedFile {
         return new UploadedFile(
                 UUID.randomUUID(),
                 filename,
+                extension,
                 contentType,
                 size,
                 storagePath,
@@ -52,6 +55,7 @@ public class UploadedFile {
     // Getters
     public UUID getId() { return id; }
     public String getFilename() { return filename; }
+    public String getExtension() { return extension; }
     public String getContentType() { return contentType; }
     public long getSize() { return size; }
     public String getStoragePath() { return storagePath; }

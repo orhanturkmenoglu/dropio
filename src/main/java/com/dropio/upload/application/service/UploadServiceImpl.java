@@ -27,18 +27,26 @@ public class UploadServiceImpl implements UploadService {
         String directory = "uploads";
         String filename = command.originalFilename();
 
+        int dotIndex = filename.lastIndexOf(".");
+
+        String name = (dotIndex == -1) ? "" : filename.substring(0, dotIndex);
+        String extension = (dotIndex == -1) ? "" : filename.substring(dotIndex+1);
+
+        // filename.pdf
         try {
             // 1. Dosyayı yaz temp alana
             storagePort.save(
                     command.content(),
                     directory,
-                    filename
+                    name,
+                    extension
             );
 
             // 2. Metadata db yazılacak Domain entity oluştur
 
             UploadedFile uploadedFile = UploadedFile
-                    .create(filename,
+                    .create(name,
+                            extension,
                             command.contentType(),
                             command.size(),
                             directory);

@@ -9,6 +9,7 @@ public class UploadedFileMapper {
         return new UploadedFileEntity(
                 domain.getId(),
                 domain.getFilename(),
+                domain.getExtension(),
                 domain.getContentType(),
                 domain.getSize(),
                 domain.getStoragePath(),
