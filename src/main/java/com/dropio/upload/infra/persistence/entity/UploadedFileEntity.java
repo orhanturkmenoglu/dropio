@@ -20,6 +20,7 @@ public class UploadedFileEntity {
     private UUID id;
 
     private String filename;
+    private String extension;
     private String contentType;
     private long size;
     private String storagePath;
@@ -31,12 +32,14 @@ public class UploadedFileEntity {
 
     public UploadedFileEntity(UUID id,
                               String filename,
+                              String extension,
                               String contentType,
                               long size,
                               String storagePath,
                               LocalDateTime uploadedAt) {
         this.id = id;
         this.filename = filename;
+        this.extension = extension;
         this.contentType = contentType;
         this.size = size;
         this.storagePath = storagePath;
@@ -46,6 +49,7 @@ public class UploadedFileEntity {
     // Getters
     public UUID getId() { return id; }
     public String getFilename() { return filename; }
+    public String getExtension() { return extension; }
     public String getContentType() { return contentType; }
     public long getSize() { return size; }
     public String getStoragePath() { return storagePath; }

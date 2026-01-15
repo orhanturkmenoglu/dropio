@@ -10,7 +10,8 @@ public interface FileStoragePort {
 
     void save(InputStream content,
               String directory,
-              String filename);
+              String filename,
+              String extension);
 
     void delete(String directory,
                 String filename);

@@ -1,6 +1,7 @@
 package com.dropio.upload.infra.storage;
 
 import com.dropio.upload.application.port.FileStoragePort;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -17,12 +18,12 @@ public class LocalFileStorageAdapter implements FileStoragePort {
 
     private final Path rootPath;
 
-    public LocalFileStorageAdapter(Path rootPath) {
-        this.rootPath = rootPath;
+    public LocalFileStorageAdapter(@Value("${storage.root-path}") String rootPathStr) {
+        this.rootPath = Path.of(rootPathStr);
     }
 
     @Override
-    public void save(InputStream content, String directory, String filename) {
+    public void save(InputStream content, String directory, String filename,String extension) {
         try{
             Path dirPath = rootPath.resolve(directory);
             Files.createDirectories(dirPath); // klasör yoksa oluştur
